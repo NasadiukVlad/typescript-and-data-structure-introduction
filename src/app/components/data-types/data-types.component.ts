@@ -51,9 +51,11 @@ export class DataTypesComponent {
   public menuTab = MenuTab;
   protected someProtectedVariable;
   private anyVariable: any;
+  private anyVariableObject: Object;
 
   private stringLengthCounter: number;
   private numberLengthCounter: number;
+  private unknownVariable: unknown;
 
   private readonly I_AM_CONSTANT = 'Constant by Default';
   private readonly I_AM_ALMOST_CONSTANT;
@@ -102,6 +104,11 @@ export class DataTypesComponent {
   private useAny() {
     this.anyVariable.unexistingMethod();
   }
+
+  private useAnyObject() {
+   // this.anyVariableObject.unexistingMethod();
+  }
+
   private getSomeString(): any {
     return 'Some string';
   }
@@ -118,5 +125,15 @@ export class DataTypesComponent {
   private countNumberLength() {
     this.numberLengthCounter = (this.getSomeNumber() as string).length;
     console.log('this.numberLengthCounter: ', this.numberLengthCounter);
+  }
+
+  private useUnknownVariable(): void {
+    if(this.unknownVariable instanceof Array) {
+      this.unknownVariable.push(5);
+    }
+
+   //  this.unknownVariable.push(5);
+
+    (this.unknownVariable as Array<number>).push(5);
   }
 }
